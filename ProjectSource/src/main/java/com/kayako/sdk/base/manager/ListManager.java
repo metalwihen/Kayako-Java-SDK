@@ -42,7 +42,7 @@ public class ListManager<T extends Resource> {
 
             // Check if value is null (e2)
             if (list == null) {
-                throw new NullPointerException();
+                throw new IllegalArgumentException("list can not be null");
             }
 
             // Return list
@@ -51,7 +51,7 @@ public class ListManager<T extends Resource> {
         } catch (IOException e) {
             // Throw Internal Network Error (e3)
             throw ExceptionUtils.generateInternalKayakoException(ErrorCode.INTERNAL_UNABLE_TO_CONNECT_TO_SERVER, e);
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | IllegalArgumentException e) {
             // Throw Internal Parse Error (e4)
             throw ExceptionUtils.generateInternalKayakoException(ErrorCode.INTERNAL_UNABLE_TO_PARSE_RESPONSE, e);
         } catch (KayakoException e) {
@@ -79,7 +79,7 @@ public class ListManager<T extends Resource> {
 
                     // Check if value is null (e2)
                     if (list == null) {
-                        throw new NullPointerException();
+                        throw new IllegalArgumentException("list can not be null");
                     }
 
                     // Return list
